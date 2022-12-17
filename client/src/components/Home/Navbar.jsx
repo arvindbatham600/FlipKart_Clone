@@ -27,7 +27,7 @@ const Navbar = () => {
         <Container>
           <img
             src={data.url}
-            alt="image"
+            alt="Product's images"
             style={{
               width: 64,
             }}
