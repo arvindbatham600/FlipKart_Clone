@@ -4,10 +4,14 @@ import { bannerData } from "../../constants/data";
 import { styled } from "@mui/system";
 
 // css
-const Image = styled("img")`
-  width: 100%;
-  height: 280px;
-`;
+const Image = styled("img")(({ theme }) => ({
+  width: "100%",
+  height: 280,
+  [theme.breakpoints.down("md")]: {
+    objectFit: "cover",
+    height: 180,
+  },
+}));
 
 const responsive = {
   desktop: {
@@ -30,7 +34,7 @@ const Banner = () => {
       responsive={responsive}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
+      // removeArrowOnDeviceType={["tablet", "mobile"]}
       autoPlay={true}
       autoPlaySpeed={1000}
       keyBoardControl={true}

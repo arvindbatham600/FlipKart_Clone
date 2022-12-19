@@ -2,12 +2,17 @@ import { navData } from "../../constants/data";
 import { Box, styled, Typography } from "@mui/material";
 
 // css
-const Wrapper = styled(Box)`
-  display: flex;
-  margin: 0 100px 5px 100px;
-  justify-content: space-between;
-  //   text-align: center;
-`;
+const Wrapper = styled(Box)(({ theme }) => ({
+  display: "flex",
+  margin: "55px 130px 0 130px",
+  justifyContent: "space-between",
+  // overflow:'overlay',
+  overflow: "hidden",
+  [theme.breakpoints.down("lg")]: {
+    margin: 0,
+  },
+}));
+
 
 const Container = styled(Box)`
   text-align: center;
