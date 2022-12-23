@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
   title: Object,
   price: Object,
   quantity: Number,
-  descripton: String,
+  description: String,
   discount: String,
   tagline: String,
 });

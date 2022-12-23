@@ -7,8 +7,7 @@ mongoose.set("strictQuery", false);
 const user = process.env.db_username;
 const password = process.env.db_password;
 const Connection = async () => {
-  const URL =
-    `mongodb+srv://${user}:${password}@e-commerce-web.aivlpjv.mongodb.net/?retryWrites=true&w=majority`;
+  const URL = `mongodb+srv://${user}:${password}@e-commerce-web.aivlpjv.mongodb.net/?retryWrites=true&w=majority`;
   try {
     await mongoose.connect(URL, {
       useUnifiedTopology: true,

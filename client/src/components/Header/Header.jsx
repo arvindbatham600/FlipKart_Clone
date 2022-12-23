@@ -1,64 +1,116 @@
-import * as React from "react";
-import { AppBar, Box, Toolbar, styled, Typography } from "@mui/material";
+import { useState } from "react";
 
-// components
-import Search from "./Search"
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Typography,
+  IconButton,
+  Drawer,
+  List,
+  styled,
+} from "@mui/material";
+import { Menu } from "@mui/icons-material";
+
+import { Link } from "react-router-dom";
+
+//components
 import CustomButton from "./CustomButton";
+import Search from "./Search";
 
-const StyledAppbar = styled(AppBar)`
-  background-color: #2874f0;
-  min-height: 55px;
+const StyledHeader = styled(AppBar)`
+  background: #2874f0;
+  height: 55px;
 `;
 
-function Header() {
-  const logoUrl =
+const Component = styled(Link)`
+  margin-left: 12%;
+  line-height: 0;
+  color: #ffffff;
+  text-decoration: none;
+`;
+
+const SubHeading = styled(Typography)`
+  font-size: 10px;
+  font-style: italic;
+`;
+
+const PlusImage = styled("img")({
+  width: 10,
+  height: 10,
+  marginLeft: 4,
+});
+
+const MenuButton = styled(IconButton)(({ theme }) => ({
+  display: "none",
+  [theme.breakpoints.down("sm")]: {
+    display: "block",
+  },
+}));
+
+const CustomButtonWrapper = styled(Box)(({ theme }) => ({
+  margin: "0 5% 0 auto",
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
+}));
+
+const Header = () => {
+  const logoURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png";
-  const subLogoUrl =
+  const subURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png";
 
-  return (
-    <>
-      <StyledAppbar>
-        <Toolbar>
-          <Box
-            sx={{
-              marginLeft: "12%",
-              lineHeight: 0,
-            }}
-          >
-            <img src={logoUrl} alt="logo" style={{ width: 75 }} />
-            <Box
-              sx={{
-                fontSize: 10,
-                fontStyle: "italic",
-                display: "flex",
-              }}
-            >
-              <Typography>
-                Explore&nbsp;
-                <Box
-                  component="span"
-                  sx={{
-                    color: "#ffe500",
-                  }}
-                >
-                  Plus
-                </Box>
-              </Typography>
-              <img src={subLogoUrl} alt="Plus logo" style={{
-                width: 10,
-                height: 10,
-                marginLeft: 4,
+  const [open, setOpen] = useState(false);
 
-              }} />
-            </Box>
-          </Box>
-          <Search />
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const ItemList = () => (
+    <Box onClick={handleClose} style={{ width: 250, background: "#2874F0", height:'100%' }}>
+      <List>
+        <listItem button style={{ color: "#000" }}>
           <CustomButton />
-        </Toolbar>
-      </StyledAppbar>
-    </>
+        </listItem>
+      </List>
+    </Box>
   );
-}
+
+  return (
+    <StyledHeader position="fixed">
+      <Toolbar style={{ minHeight: 55 }}>
+        <MenuButton color="inherit" onClick={handleOpen}>
+          <Menu />
+        </MenuButton>
+
+        <Drawer open={open} onClose={handleClose}>
+          {ItemList()}
+        </Drawer>
+
+        <Component to="/">
+          <img src={logoURL} style={{ width: 75 }} alt="logo" />
+          <Box component="span" style={{ display: "flex" }}>
+            <SubHeading>
+              Explore&nbsp;
+              <Box component="span" style={{ color: "#FFE500" }}>
+                Plus
+              </Box>
+            </SubHeading>
+            <PlusImage src={subURL} />
+          </Box>
+        </Component>
+        <Search />
+        <CustomButtonWrapper>
+          <CustomButton />
+        </CustomButtonWrapper>
+      </Toolbar>
+    </StyledHeader>
+  );
+};
 
 export default Header;

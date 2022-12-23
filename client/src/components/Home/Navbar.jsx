@@ -4,15 +4,13 @@ import { Box, styled, Typography } from "@mui/material";
 // css
 const Wrapper = styled(Box)(({ theme }) => ({
   display: "flex",
-  margin: "55px 130px 0 130px",
+  margin: "0px 130px 0 130px",
   justifyContent: "space-between",
-  // overflow:'overlay',
   overflow: "hidden",
   [theme.breakpoints.down("lg")]: {
     margin: 0,
   },
 }));
-
 
 const Container = styled(Box)`
   text-align: center;
@@ -27,20 +25,26 @@ const Text = styled(Typography)`
 
 const Navbar = () => {
   return (
-    <Wrapper>
-      {navData.map((data) => (
-        <Container>
-          <img
-            src={data.url}
-            alt="Product's images"
-            style={{
-              width: 64,
-            }}
-          />
-          <Text>{data.text}</Text>
-        </Container>
-      ))}
-    </Wrapper>
+    <Box
+      style={{
+        backgroundColor: "#fff",
+      }}
+    >
+      <Wrapper>
+        {navData.map((data) => (
+          <Container>
+            <img
+              src={data.url}
+              alt="Product's images"
+              style={{
+                width: 64,
+              }}
+            />
+            <Text>{data.text}</Text>
+          </Container>
+        ))}
+      </Wrapper>
+    </Box>
   );
 };
 
