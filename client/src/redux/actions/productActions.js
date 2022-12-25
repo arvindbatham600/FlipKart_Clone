@@ -1,9 +1,9 @@
 import * as actionType from "../constants/productConstant";
 import axios from "axios";
-const URL = "http://localhost:8000";
+const URL = "";
 
 export const getProducts = () => async (dispathch) => {
-  try {const URL = "http://localhost:8000";
+  try {
     let { data } = await axios.get(`${URL}/products`);
     dispathch({ type: actionType.GET_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
